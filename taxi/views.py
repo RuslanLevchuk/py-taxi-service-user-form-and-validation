@@ -40,20 +40,24 @@ class CarListView(LoginRequiredMixin, generic.ListView):
     model = Car
     paginate_by = 5
     queryset = Car.objects.all().select_related("manufacturer")
+    template_name = "taxi/car_list.html"
 
 
 class CarDetailView(LoginRequiredMixin, generic.DetailView):
     model = Car
+    template_name = "taxi/car_detail.html"
 
 
 class DriverListView(LoginRequiredMixin, generic.ListView):
     model = Driver
     paginate_by = 5
+    template_name = "taxi/driver_list.html"
 
 
 class DriverDetailView(LoginRequiredMixin, generic.DetailView):
     model = Driver
     queryset = Driver.objects.all().prefetch_related("cars__manufacturer")
+    template_name = "taxi/driver_detail.html"
 
 
 class CustomModelFormMixin:
